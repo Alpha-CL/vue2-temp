@@ -1,12 +1,14 @@
 <template>
 
   <layout class="demo">
-    demo
+    demo:{{ demo }}
+    demoGetter: {{ demoGetter }}
   </layout>
 
 </template>
 
 <script>
+import { mapState, mapActions, mapGetters } from 'vuex';
 import layout from "./components/layout";
 import {demo11} from "@/utils";
 import {} from "./request";
@@ -32,6 +34,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('test', ['demoAction']),
     /** common methods zone start **/
 
     /** common methods zone end **/
@@ -39,6 +42,8 @@ export default {
     /** init zone start **/
     initComp() {
       demo11();
+
+      this.demoAction('hi');
     },
     /** init zone end **/
 
@@ -46,7 +51,10 @@ export default {
 
 
   },
-  computed: {},
+  computed: {
+    ...mapGetters('test', ['demoGetter']),
+    ...mapState('test', ['demo']),
+  },
   watch: {},
   created() {
   },

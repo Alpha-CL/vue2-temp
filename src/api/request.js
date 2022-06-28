@@ -3,6 +3,10 @@ import axios from "axios";
 import {Notification, MessageBox, Message} from "element-ui";
 
 
+// user token
+const token = '';
+
+
 // custom header
 axios.defaults.headers["Content-Type"] = "application/json;charset=utf-8";
 
@@ -22,9 +26,9 @@ service.interceptors.response.use(
     config.headers = {
     };
     
-    // if (getToken()) {
-    //     config.headers["Authorization"] = getToken(); 
-    // }
+    if (token) {
+        config.headers["Authorization"] = token;
+    }
     
     return config;
 },

@@ -2,6 +2,7 @@
 
   <div class="demo-layout">
     demo-layout
+    <slot/>
   </div>
 
 </template>
@@ -13,6 +14,7 @@ export default {
   props: {},
   components: {},
   data() {
+    return {};
   },
   methods: {},
 };
