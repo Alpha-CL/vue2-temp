@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import {getDemo} from "@/api/demoApi";
 
 export default {
   name: "App",
@@ -18,13 +17,7 @@ export default {
   methods: {},
   created() {
   },
-  async mounted() {
-
-    await getDemo()
-      .then(res => {
-        console.log('res: ', res);
-      });
-
+  mounted() {
   },
   beforeDestroy() {
   },

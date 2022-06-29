@@ -1,5 +1,5 @@
 import Mock from "mockjs";
-import "./demoMock";
+import "./testMock";
 
 // analog response delay
 Mock.setup({
