@@ -1,13 +1,14 @@
-
 <template>
   <div id="app">
     <keep-alive>
-      <router-view />
+      <router-view/>
     </keep-alive>
   </div>
 </template>
 
 <script>
+import {getDemo} from "@/api/demoApi";
+
 export default {
   name: "App",
   data() {
@@ -16,15 +17,21 @@ export default {
   },
   methods: {},
   created() {
-    },
-  mounted(){
   },
-  beforeDestroy(){},
+  async mounted() {
+
+    await getDemo()
+      .then(res => {
+        console.log('res: ', res);
+      });
+
+  },
+  beforeDestroy() {
+  },
 };
 </script>
 
 <style lang="scss">
-@import "~@/style/global";
-// @import "~@/assets/iconfont/iconfont.scss";
+@import "~@/style/index";
 </style>
 

@@ -1,10 +1,9 @@
-
 import axios from "axios";
-import {Notification, MessageBox, Message} from "element-ui";
+import {Message, Notification} from "element-ui"; // MessageBox
 
 
 // user token
-const token = '';
+const token = "";
 
 
 // custom header
@@ -13,69 +12,66 @@ axios.defaults.headers["Content-Type"] = "application/json;charset=utf-8";
 
 // create axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 50000
+    baseURL: process.env.VUE_APP_BASE_API,
+    timeout: 50000
 });
 
 
 // request interceptor
 service.interceptors.response.use(
-(config) => {
+    (config) => {
 
-    config.data = JSON.stringify(config.data);
-    config.headers = {
-    };
-    
-    if (token) {
-        config.headers["Authorization"] = token;
-    }
-    
-    return config;
-},
-(err) => {
+        config.data = JSON.stringify(config.data);
+        config.headers = {};
 
-    Promise.reject(err);
-});
+        if (token) {
+            config.headers["Authorization"] = token;
+        }
+
+        return config;
+    },
+    (err) => {
+
+        Promise.reject(err);
+    });
 
 
 // response interceptor
 service.interceptors.response.use(
-(res) => {
-    
-    // response code
-    const code = res.data.code;
+    (res) => {
 
-    if(code === 400) {
+        // parse data as json
+        if (typeof res.data === "string") {
+            res = JSON.parse(res.data);
+        }
 
-    } else if(code === 401) {
+        // response code
+        const code = res.code;
 
-    } else if(code === 500) {
+        if (+code !== 200) {
 
-    } else if(code === 501) {
+            Notification.error({
+                title: "Request warning",
+                message: res.data.message || '',
+                type: "warning"
+            });
 
-    } else if(code !== 200) {
+            return null;
 
-        // other code status
-        Notification.error({
-            title: res.data.msg
+        } else {
+
+            return res;
+        }
+    },
+    (err) => {
+
+        Message({
+            message: err.message,
+            type: "error",
+            duration: 5 * 1000
         });
-
-    } else {
-
-        // response data
-        return res.data;
-    }
-},
-(err) => {
-    
-    Message({
-        message: "",        // err.message
-        type: "error",
-        duration: 5 * 1000
-    });
-},
+    },
 );
 
 
 export default service;
-

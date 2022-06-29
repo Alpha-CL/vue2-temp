@@ -4,14 +4,13 @@ module.exports = {
     devServer: {
         proxy: {
             "/api": {
-                target: "http://localhost:80",
+                target: "localhost:1314",
             },
             "/download": {
-                target: "http://localhost:80",
+                target: "localhost:80",
             }
         },
     },
-
     outputDir: path.resolve(__dirname, "./dist"),
     configureWebpack: require("./webpack.config"),
 };

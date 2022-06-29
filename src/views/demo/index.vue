@@ -44,6 +44,7 @@ export default {
       demo11();
 
       this.demoAction('hi');
+      this.$store.dispatch("test/demoAction", "hey")
     },
     /** init zone end **/
 
