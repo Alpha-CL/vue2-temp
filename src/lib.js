@@ -1,7 +1,6 @@
 import  Vue from 'vue';
 
 // lib
-import "./mock";
 import "axios";
 import "js-cookie";
 import ElementUI from "element-ui";
@@ -11,6 +10,7 @@ import "normalize.css/normalize.css";
 
 
 // local module
+import "./mock";
 
 
 // global methods
