@@ -1,27 +1,27 @@
-
 <template>
 
-	<div class="test-layout">
-		test-layout
-		<slot name="namespace"/>
-		<slot/>
-	</div>
+  <div class="test-layout">
+
+    <div class="test-name">
+      <slot name="namespace"/>
+    </div>
+
+    <slot/>
+
+  </div>
 
 </template>
 
 <script>
 
 export default {
-	 name: "test-layout",
-	 props: {
-	 },
-	 components: {
-	 },
-	 data() {
-	   return {}; 
-	 },
-	 methods: {
-	 },
+  name: "test-layout",
+  props: {},
+  components: {},
+  data() {
+    return {};
+  },
+  methods: {},
 };
 
 </script>

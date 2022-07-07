@@ -1,7 +1,13 @@
 <template>
 
   <layout class="test">
-    test
+
+    <template #namespace>
+      namespace-test
+    </template>
+
+    def-test
+
   </layout>
 
 </template>
@@ -55,6 +61,8 @@ export default {
         .then(res => {
           console.log(res);
         });
+
+      this.$store.dispatch('test/demoAction');
     },
 
   },

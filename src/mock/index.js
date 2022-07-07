@@ -5,4 +5,3 @@ import "./testMock";
 Mock.setup({
 	timeout: "500-2000",
 });
-
