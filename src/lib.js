@@ -1,6 +1,6 @@
-import  Vue from 'vue';
+import Vue from 'vue';
 
-// lib
+// import third-party modules
 import "axios";
 import "js-cookie";
 import ElementUI from "element-ui";
@@ -9,25 +9,31 @@ import "echarts";
 import "normalize.css/normalize.css";
 
 
-// local module
+// import global methods
+import globalMethods from "./utils/globalMethods";
+// import global components
+import globalComps from "./utils/globalComps";
+// import local module
 import "./mock";
 
 
-// global methods
-
-
-// global components
-
-
-// mount the plugin
-Vue.use(ElementUI,{
+// mount plugins
+Vue.use(ElementUI, {
     size: "small"
 });
 
 
-// global method mount
-// Vue.prototype.method = method;
+// mount global methods -- Vue.prototype.method = method;
+(function () {
+    for (const method in globalMethods) {
+        Vue.prototype[method] = globalMethods[method];
+    }
+}(globalMethods));
 
 
-// global component mount
-// Vue.component("Comp", Comp);
+// mount global components -- Vue.component("Comp", Comp);
+(function () {
+    for (const comp in globalComps) {
+        Vue.component(comp, globalComps[comp]);
+    }
+}(globalComps));

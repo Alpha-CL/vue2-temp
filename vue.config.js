@@ -1,18 +1,8 @@
 const path = require("path");
+const proxy = require("./config/proxy");
 
 module.exports = {
-    devServer: {
-        proxy: {
-            "/api": {
-                target: "localhost:1314",
-            },
-            "/download": {
-                target: "localhost:80",
-            }
-        },
-    },
+    devServer: {proxy},
     outputDir: path.resolve(__dirname, "./dist"),
-    configureWebpack: require("./webpack.config"),
+    configureWebpack: require("./config/webpack.config"),
 };
-
-
