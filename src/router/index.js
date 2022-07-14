@@ -1,4 +1,4 @@
-import routes from "./routes";
+import routes from "./routes/index";
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 

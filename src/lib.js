@@ -10,9 +10,9 @@ import "normalize.css/normalize.css";
 
 
 // import global methods
-import globalMethods from "./utils/globalMethods";
+import globalMethods from "./config/globalMethods";
 // import global components
-import globalComps from "./utils/globalComps";
+import globalComps from "./config/globalComps";
 // import local module
 import "./mock";
 
