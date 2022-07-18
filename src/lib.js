@@ -13,6 +13,8 @@ import "normalize.css/normalize.css";
 import globalMethods from "./config/globalMethods";
 // import global components
 import globalComps from "./config/globalComps";
+// import global directives
+import globalDirectives from "./config/globalDirectives";
 // import local module
 import "./mock";
 
@@ -23,17 +25,28 @@ Vue.use(ElementUI, {
 });
 
 
-// mount global methods -- Vue.prototype.method = method;
-(function () {
+// mount global methods -- Vue.prototype._$method = method;
+(function (globalMethods = {}) {
     for (const method in globalMethods) {
-        Vue.prototype[method] = globalMethods[method];
+        const customMethodName = `_$${method}`;
+        Vue.prototype[customMethodName] = globalMethods[method];
     }
 }(globalMethods));
 
 
 // mount global components -- Vue.component("Comp", Comp);
-(function () {
+(function (globalComps = {}) {
     for (const comp in globalComps) {
-        Vue.component(comp, globalComps[comp]);
+        const customCompName = `${comp.replace(comp[0], comp[0].toUpperCase())}Plus`;
+        Vue.component(customCompName, globalComps[comp]);
     }
 }(globalComps));
+
+
+// mount global directives -- Vue.directive("directive", directive);
+(function (globalDirectives = {}) {
+    for (const directive in globalDirectives) {
+        const customDirectiveName = `${directive}`;
+        Vue.directive(customDirectiveName, globalComps[directive]);
+    }
+}(globalDirectives));

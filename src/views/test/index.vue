@@ -8,6 +8,8 @@
 
     def-test
 
+    <FormPlus :formData="{ a: 1, b: 2 }"/>
+
   </layout>
 
 </template>

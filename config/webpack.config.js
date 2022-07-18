@@ -8,5 +8,3 @@ if (process.env.NODE_ENV === "production") {
 	// development environment config
 	module.exports = require("./webpack.prod");
 }
-
-
